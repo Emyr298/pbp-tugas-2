@@ -1,8 +1,7 @@
 # Tugas 2 PBP
 
 ## Aplikasi Heroku
-- Link Aplikasi: https://pbp-tugas-2-emyr298.herokuapp.com/
-  - Link Katalog: https://pbp-tugas-2-emyr298.herokuapp.com/katalog
+- Link Aplikasi: https://pbp-tugas-2-emyr298.herokuapp.com/katalog
 
 ## Bagan Interaksi Client dengan Aplikasi Web django
 ![image](https://user-images.githubusercontent.com/101683735/190184552-917f0bec-2fe7-4d8e-9758-f7af3d765dc7.png)

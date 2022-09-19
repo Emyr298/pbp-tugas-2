@@ -1,6 +1,7 @@
 # Tugas 3 PBP
 
 ## Perbedaan JSON, XML, HTML
+JSON, XML, HTML adalah format dari data delivery yang sering dipakai pada aplikasi platform. Suatu file HTML berisi dari kumpulan tag seperti h1, div, p, img, dan sebagainya. Ada dua jenis dari tag dalam HTML, yaitu self-closing dan non-self-closing. Dalam non-self-closing tag, kita bisa menaruh berbagai tag lainnya. Tetapi, tags beserta syntax lainnya yang ada pada HTML didesain untuk mendefinisikan struktur dari halaman web, sehingga kurang tepat jika ingin digunakan untuk data yang akan langsung ditampilkan. Untuk data delivery yang datanya tidak akan langsung ditampilkan, kita bisa menggunakan XML dan JSON. XML memiliki syntax yang mirip dengan HTML, tetapi kita bebas menentukan nama dari tags yang ada. Hal ini dikarenakan XML yang didesain bukan untuk data yang akan langsung ditampilkan.
 
 ## Pentingnya Data Delivery
 
@@ -23,4 +24,4 @@ Pada `models.py` dari `mywatchlist`, saya menambahkan class baru bernama `MyWatc
 Setelah itu, saya lakukan migrasi dengan `python manage.py makemigrations` dan `python manage.py migrate` untuk mengaplikasikan perubahan model pada database schema.
 
 ## Referensi
-- 
+- https://www.geeksforgeeks.org/html-vs-xml/

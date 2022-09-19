@@ -1,0 +1,112 @@
+[
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 1,
+        "fields": {
+            "watched": true,
+            "title": "Yokozo",
+            "rating": 5,
+            "release_date": "2015-05-22",
+            "review": "Tool -Ayanoqojee"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 2,
+        "fields": {
+            "watched": false,
+            "title": "Blade Art Online",
+            "rating": 3,
+            "release_date": "2021-06-14",
+            "review": "OwO"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 3,
+        "fields": {
+            "watched": true,
+            "title": "Kenshin Impact: The Animation",
+            "rating": 4,
+            "release_date": "2022-01-26",
+            "review": "A Ufotabluh anime"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 4,
+        "fields": {
+            "watched": false,
+            "title": "Re:Two Kara Hajimeru Mahou no Barbatos",
+            "rating": 1,
+            "release_date": "2017-11-15",
+            "review": "Venti the Witch is so cute"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 5,
+        "fields": {
+            "watched": false,
+            "title": "My Payung Academia",
+            "rating": 5,
+            "release_date": "2021-01-17",
+            "review": "So motivating"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 6,
+        "fields": {
+            "watched": true,
+            "title": "Cyberpingpong: Tiprunner",
+            "rating": 1,
+            "release_date": "2022-05-13",
+            "review": "Too much machines"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 7,
+        "fields": {
+            "watched": true,
+            "title": "Made in Underground",
+            "rating": 1,
+            "release_date": "2013-10-09",
+            "review": "So scary and depressing"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 8,
+        "fields": {
+            "watched": false,
+            "title": "SWPPHYRE: Hyousetsu Teiapalahitu",
+            "rating": 4,
+            "release_date": "2009-03-08",
+            "review": "The animation is better than the previous series"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 9,
+        "fields": {
+            "watched": true,
+            "title": "Wintertime Render",
+            "rating": 2,
+            "release_date": "2016-08-02",
+            "review": "So cold"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 10,
+        "fields": {
+            "watched": true,
+            "title": "Destiny Stay Hidrated",
+            "rating": 3,
+            "release_date": "2012-06-10",
+            "review": "Stay Hydrated!!"
+        }
+    }
+]

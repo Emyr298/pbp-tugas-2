@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+ {% block content %}
+
+  <h1>My Watch List</h1>
+
+  <table>
+    <tr>
+      <th>Watched</th>
+      <th>Title</th>
+      <th>Rating</th>
+      <th>Release Date</th>
+      <th>Review</th>
+    </tr>
+    {% comment %} Add the data below this line {% endcomment %}
+    {% for my_watch_list in my_watch_lists %}
+      <tr>
+        <th>{{my_watch_list.watched}}</th>
+        <th>{{my_watch_list.title}}</th>
+        <th>{{my_watch_list.rating}}</th>
+        <th>{{my_watch_list.release_date}}</th>
+        <th>{{my_watch_list.review}}</th>
+      </tr>
+    {% endfor %}
+  </table>
+
+ {% endblock content %}

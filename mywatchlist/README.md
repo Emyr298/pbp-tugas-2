@@ -1,7 +1,7 @@
 # Tugas 3 PBP
 
 ## Perbedaan JSON, XML, HTML
-JSON, XML, HTML adalah format dari data delivery yang sering dipakai pada aplikasi platform. Suatu file HTML berisi dari kumpulan tag seperti h1, div, p, img, dan sebagainya. Ada dua jenis dari tag dalam HTML, yaitu self-closing dan non-self-closing. Dalam non-self-closing tag, kita bisa menaruh berbagai tag lainnya. Tetapi, tags beserta syntax lainnya yang ada pada HTML didesain untuk mendefinisikan struktur dari halaman web, sehingga kurang tepat jika ingin digunakan untuk data yang akan langsung ditampilkan. Untuk data delivery yang datanya tidak akan langsung ditampilkan, kita bisa menggunakan XML dan JSON. XML memiliki syntax yang mirip dengan HTML, tetapi kita bebas menentukan nama dari tags yang ada. Hal ini dikarenakan XML yang didesain bukan untuk data yang akan langsung ditampilkan.
+JSON, XML, HTML adalah format dari _data delivery_ yang sering dipakai pada aplikasi platform. Suatu file HTML berisi dari kumpulan _tag_ seperti `h1`, `div`, `p`, `img`, dsb. Pada tiap _tag_, kita bisa menambahkan _attribute_ yang memberi informasi tambahan dari _tag_-nya, seperti `id`, `class`, dsb. Tetapi, _tag_ dan _attribute_ yang ada pada HTML tidak bisa diisi sesuka hati kita karena masing-masing _tag_ memiliki makna bagi desain halaman web, sehingga kurang tepat jika kita ingin menggunakan HTML pada _data delivery_ ketika data yang dikirim tidak dimaksudkan untuk langsung ditampilkan ke halaman web. Pada kasus tersebut, kita bisa menggunakan XML dan JSON. XML memiliki _syntax_ yang mirip dengan HTML, tetapi tidak seperti pemilihan _tag_ dan _attribute_ yang ketat pada HTML, dalam XML kita diberi kebebasan dalam membuat _tag_ dan _attribute_. JSON memiliki _syntax_ yang berbeda jauh dengan keduanya. _Syntax_ dari JSON lebih singkat dibandingkan dengan XML karena tidak memerlukan _tag_ yang penulisannya _redundant_. Selain itu, JSON sudah memiliki tipe data primitif bawaan, sehingga tidak perlu menambahkan informasi mengenai tipe data dari suatu nilai dalam bentuk attribute atau semacamnya. Untuk memberi tipe data dari suatu nilai pada JSON, kita hanya perlu mengatur format penulisan nilainya, seperti menambakan tanda petik dua untuk _string_, langsung menuliskan angka saja pada _number_, dsb. Oleh karena itu, JSON umumnya memiliki ukuran yang lebih kecil dibandingkan dengan XML ketika merepresentasikan data yang sama.
 
 ## Pentingnya Data Delivery
 
@@ -25,3 +25,4 @@ Setelah itu, saya lakukan migrasi dengan `python manage.py makemigrations` dan `
 
 ## Referensi
 - https://www.geeksforgeeks.org/html-vs-xml/
+- https://www.geeksforgeeks.org/difference-between-json-and-xml/

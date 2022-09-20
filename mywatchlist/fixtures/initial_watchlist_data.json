@@ -108,5 +108,38 @@
             "release_date": "2012-06-10",
             "review": "Stay Hydrated!!"
         }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 11,
+        "fields": {
+            "watched": false,
+            "title": "Normaler Things",
+            "rating": 3,
+            "release_date": "2016-01-23",
+            "review": "Everything is normal, not bad, not good"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 12,
+        "fields": {
+            "watched": false,
+            "title": "Jim The Thief of Identity",
+            "rating": 5,
+            "release_date": "2018-04-01",
+            "review": "An eye-opening series, it tells us that identity theft is not a joke."
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 13,
+        "fields": {
+            "watched": false,
+            "title": "Tokyo Eighty-Six",
+            "rating": 4,
+            "release_date": "2013-04-06",
+            "review": "The comedy is so dark"
+        }
     }
 ]

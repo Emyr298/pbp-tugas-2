@@ -25,7 +25,7 @@ class CatalogItemTestCase(TestCase):
             item_url='https://bad-smile.co.mltv/products/12342',
         )
         try:
-            CatalogItem.objects.get(item_name='Figur Animeks')
+            CatalogItem.objects.get(item_name='Figur Animek') # diganti pada tugas 3, tadinya ada typo 'Figur Animeks'
             CatalogItem.objects.get(item_name='Mobil Mainan')
         except CatalogItem.DoesNotExist:
             self.fail('Created item doesn\'t exists')

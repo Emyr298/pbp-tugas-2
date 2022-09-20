@@ -38,7 +38,18 @@ Saya membuat `urls.py` pada `mywatchlist`. Setelah itu, saya membuat variabel `a
 ### Tahap 7: _Deployment_ ke Heroku
 Ketika saya mengecek ketiga halaman, 10 data yang sudah saya buat tidak ada dalam database Heroku. Setelah mengecek `Procfile`, ternyata permasalahannya ada pada command loaddata yang tidak dipanggil dalam komputer Heroku, sehingga saya tambahkan `python manage.py loaddata initial_watchlist_data.json` di belakang `python manage.py loaddata initial_catalog_data.json`.
 
-Catatan: Deployment ke Heroku yang memasukkan API key dan APP key sudah dilakukan pada tugas 2 kemarin (memang disuruh begitu), sehingga tahapan tersebut ada pada README.md dari katalog. 
+Catatan: Deployment ke Heroku yang memasukkan API key dan APP key sudah dilakukan pada tugas 2 kemarin (memang disuruh begitu), sehingga tahapan tersebut ada pada README.md dari katalog.
+
+## Postman
+### `/mywatchlist/html`
+![image](https://user-images.githubusercontent.com/101683735/191267017-ca348b8c-f059-4a2f-820f-caf327f66f2f.png)
+
+### `/mywatchlist/xml`
+![image](https://user-images.githubusercontent.com/101683735/191267073-ef0d7e95-d8c4-473b-9304-3ad52a1eee87.png)
+
+### `/mywatchlist/json`
+![image](https://user-images.githubusercontent.com/101683735/191267041-0ce71380-a1be-4f35-9a9c-f13bf114e267.png)
+
 
 ## Referensi
 - https://www.geeksforgeeks.org/html-vs-xml/

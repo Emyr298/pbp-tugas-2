@@ -15,12 +15,26 @@
         <th>Tanggal Pembuatan</th>
         <th>Judul</th>
         <th>Deskripsi</th>
+        <th>Status</th>
+        <th>Tombol</th>
     </tr>
     {% for task in task_list %}
         <tr>
             <td>{{task.date}}</td>
             <td>{{task.title}}</td>
             <td>{{task.description}}</td>
+            <td>
+                {% if task.is_finished %}
+                    Selesai
+                {% else %}
+                    Belum Selesai
+                {% endif %}
+            </td>
+            <td>
+                <button><a href="{% url 'todolist:set_finished' task.pk %}">Selesaikan</a></button>
+                <button><a href="{% url 'todolist:set_unfinished' task.pk %}">Belum Selesaikan</a></button>
+                <button><a href="{% url 'todolist:delete_task' task.pk %}">Hapus</a></button>
+            </td>
         </tr>
     {% endfor %}
 </table>

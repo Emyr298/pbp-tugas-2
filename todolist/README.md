@@ -62,3 +62,4 @@ Saya membuat dua akun bernama `Emyr298` dan `Ymir` lalu menambahkan tiga data _d
 - https://pbp-fasilkom-ui.github.io/ganjil-2023/assignments/tutorial/tutorial-3
 - https://docs.djangoproject.com/en/4.1/topics/forms/
 - https://www.w3schools.com/tags/att_form_action.asp
+- https://www.geeksforgeeks.org/if-django-template-tags/

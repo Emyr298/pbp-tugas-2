@@ -11,6 +11,7 @@ from todolist.models import Task
 
 # Referensi
 # https://stackoverflow.com/questions/4195242/django-model-object-with-foreign-key-creation
+# https://www.geeksforgeeks.org/if-django-template-tags/
 
 # Create your views here.
 @login_required(login_url='/todolist/login/')
@@ -36,6 +37,42 @@ def create_task(request):
     
     context = {}
     return render(request, 'create_task.html', context)
+
+@login_required(login_url='/todolist/login/')
+def set_finished(request, id):
+    user = request.user
+    task = Task.objects.get(pk=id)
+    
+    if user.id == task.user_id:
+        print(task.is_finished)
+        task.is_finished = True
+        task.save()
+        print('saved')
+    else:
+        print('unsaved')
+    
+    return redirect('todolist:todolist')
+
+@login_required(login_url='/todolist/login/')
+def set_unfinished(request, id):
+    user = request.user
+    task = Task.objects.get(pk=id)
+    
+    if user.id == task.user_id:
+        task.is_finished = False
+        task.save()
+    
+    return redirect('todolist:todolist')
+
+@login_required(login_url='/todolist/login/')
+def delete_task(request, id):
+    user = request.user
+    task = Task.objects.get(pk=id)
+    
+    if user.id == task.user_id:
+        task.delete()
+    
+    return redirect('todolist:todolist')
 
 def register(request):
     form = UserCreationForm()

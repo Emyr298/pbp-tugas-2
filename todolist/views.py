@@ -32,8 +32,12 @@ def create_task(request):
         title = request.POST.get('title')
         description = request.POST.get('description')
         date = datetime.datetime.now()
-        Task.objects.create(user_id=user.id, title=title, description=description, date=date)
-        return redirect('todolist:todolist')
+        
+        if title != '':
+            Task.objects.create(user_id=user.id, title=title, description=description, date=date)
+            return redirect('todolist:todolist')
+        else:
+            messages.info(request, 'Title tidak boleh kosong')
     
     context = {}
     return render(request, 'create_task.html', context)
@@ -44,12 +48,8 @@ def set_finished(request, id):
     task = Task.objects.get(pk=id)
     
     if user.id == task.user_id:
-        print(task.is_finished)
         task.is_finished = True
         task.save()
-        print('saved')
-    else:
-        print('unsaved')
     
     return redirect('todolist:todolist')
 

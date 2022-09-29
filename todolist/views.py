@@ -9,6 +9,9 @@ from django.contrib.auth.decorators import login_required
 
 from todolist.models import Task
 
+# Referensi
+# https://stackoverflow.com/questions/4195242/django-model-object-with-foreign-key-creation
+
 # Create your views here.
 @login_required(login_url='/todolist/login/')
 def todolist(request):

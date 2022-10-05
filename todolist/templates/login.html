@@ -1,35 +1,38 @@
 {% extends 'base.html' %}
 {% block meta %}
 <title>Login</title>
+<script src="https://cdn.tailwindcss.com"></script>
 {% endblock meta %}
 
 {% block content %}
-<div class = "login">
-    <h1>Login</h1>
-    <form method="POST" action="">
-        {% csrf_token %}
-        <table>
-            <tr>
-                <td>Username: </td>
-                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
-            </tr>
-            <tr>
-                <td>Password: </td>
-                <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login"></td>
-            </tr>
-        </table>
-    </form>
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    Belum mempunyai akun? <a href="{% url 'todolist:register' %}">Buat Akun</a>
+<div class="w-screen h-screen flex flex-col justify-center">
+    <h1 class="text-3xl text-center font-bold mb-10">To-Do List</h1>
+    <div class="w-fit bg-transparent mx-auto drop-shadow-[0_3px_4px_rgba(0,0,0,0.25)]">
+        <div class="w-full bg-green-500 p-2 rounded-t-lg">
+            <h1 class="text-white text-lg font-bold">Login</h1>
+        </div>
+        <div class="w-full bg-white px-4 py-2 rounded-b-lg text-lg">
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div>
+                    <span>Username:</span>
+                    <input type="text" name="username" placeholder="Username" class="form-control block w-full mt-1 p-1 rounded-lg border-2">
+                </div>
+                <div class="mt-3">
+                    <span>Password:</span>
+                    <input type="password" name="password" placeholder="Password" class="form-control block w-full mt-1 p-1 rounded-lg border-2">
+                </div>
+                <input class="btn login_btn w-full mt-3 p-1 bg-green-500 hover:bg-green-600 text-white font-bold rounded-lg cursor-pointer" type="submit" value="Login">
+            </form>
+            {% if messages %}
+                <ul class="mt-1">
+                    {% for message in messages %}
+                        <li class="text-base text-red-500">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <span class="block mt-2 text-base">Belum mempunyai akun? <a class="text-green-500 underline" href="{% url 'todolist:register' %}">Buat Akun</a></span>
+        </div>
+    </div>
 </div>
 {% endblock content %}

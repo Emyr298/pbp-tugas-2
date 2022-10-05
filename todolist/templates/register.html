@@ -2,27 +2,43 @@
 
 {% block meta %}
 <title>Registrasi Akun</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+    #id_username, #id_password1, #id_password2 {
+        display: block;
+        width: 100%;
+        margin-top: 0.25rem;
+        padding: 0.25rem;
+        border-radius: 0.5rem;
+        border-width: 2px;
+    }
+    .helptext {
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+    }
+</style>
 {% endblock meta %}
 
 {% block content %}
-<div class = "login">
-    <h1>Formulir Registrasi</h1>
-    <form method="POST" >  
-        {% csrf_token %}  
-        <table>
-            {{ form.as_table }}
-            <tr>
-                <td></td>
-                <td><input type="submit" name="submit" value="Daftar"/></td>
-            </tr>
-        </table>
-    </form>
-    {% if messages %}
-    <ul>
-        {% for message in messages %}
-            <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
+<div class="w-screen h-screen flex flex-col justify-center">
+    <div class="lg:w-[512px] md:w-[400px] w-[300px] bg-transparent mx-auto drop-shadow-[0_3px_4px_rgba(0,0,0,0.25)]">
+        <div class="w-full bg-green-500 p-2 rounded-t-lg">
+            <h1 class="text-white text-lg font-bold">Formulir Registrasi</h1>
+        </div>
+        <div class="w-full bg-white px-4 pt-2 pb-4 rounded-b-lg text-lg">
+            <form method="POST" action="">
+                {% csrf_token %}
+                {{form.as_div}}
+                <input class="btn login_btn w-full mt-3 p-1 bg-green-500 hover:bg-green-600 text-white font-bold rounded-lg cursor-pointer" type="submit" value="Daftar">
+            </form>
+            {% if messages %}
+                <ul class="mt-1">
+                    {% for message in messages %}
+                        <li class="text-base text-red-500">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
 </div>
 {% endblock content %}

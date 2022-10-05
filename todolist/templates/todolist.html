@@ -1,43 +1,57 @@
 {% extends 'base.html' %}
 {% block meta %}
 <title>To-Do List</title>
+<script src="https://cdn.tailwindcss.com"></script>
 {% endblock meta %}
 
 {% block content %}
-<h1>To-Do List</h1>
+<nav class="w-full p-2 bg-green-500 flex flex-col lg:flex-row lg:justify-between items-center fixed top-0 drop-shadow z-50">
+    <div class="flex flex-col justify-center">
+        <span class="text-xl font-bold text-white"><a href="{% url 'todolist:todolist' %}">To-Do List</a></span>
+    </div>
+    <div class="inline-block">
+        <span class="text-white">Welcome, {{username}}</span>
+        <button class="ml-2 p-2 hover:bg-[rgba(0,0,0,0.2)] rounded-lg"><a class="text-white font-bold" href="{% url 'todolist:logout' %}">Logout</a></button>
+    </div>
+</nav>
 
-<h3>User:</h3>
-<p>{{username}}</p>
+<h3 class="lg:mt-16 mt-24 text-3xl text-center font-bold">Tasks</h3>
 
-<h3>Task:</h3>
-<table>
-    <tr>
-        <th>Tanggal Pembuatan</th>
-        <th>Judul</th>
-        <th>Deskripsi</th>
-        <th>Status</th>
-        <th>Tombol</th>
-    </tr>
+<div class="mt-2 flex lg:justify-end justify-center">
+    <a href="{% url 'todolist:create_task' %}">
+        <button class="lg:mr-2 p-2 font-bold text-white bg-green-500 hover:bg-green-600 rounded-lg">Tambah Task Baru</button>
+    </a>
+</div>
+
+<div class="p-5 flex flex-wrap gap-5 justify-center">
     {% for task in task_list %}
-        <tr>
-            <td>{{task.date}}</td>
-            <td>{{task.title}}</td>
-            <td>{{task.description}}</td>
-            <td>
-                {% if task.is_finished %}
-                    Selesai
-                {% else %}
-                    Belum Selesai
-                {% endif %}
-            </td>
-            <td>
-                <button><a href="{% url 'todolist:set_finished' task.pk %}">Selesaikan</a></button>
-                <button><a href="{% url 'todolist:set_unfinished' task.pk %}">Belum Selesaikan</a></button>
-                <button><a href="{% url 'todolist:delete_task' task.pk %}">Hapus</a></button>
-            </td>
-        </tr>
+        <div class="xl:w-80 xl:h-96 w-72 h-80 p-3 bg-white rounded-xl flex flex-col justify-between drop-shadow-[0_3px_4px_rgba(0,0,0,0.25)] transition-transform hover:scale-105 duration-300">
+            <div>
+                <span class="block text-center text-lg font-bold overflow-hidden">{{task.title}}</span>
+                <span class="block text-center">
+                    {% if task.is_finished %}
+                        <span class="text-green-500">Selesai</span>
+                    {% else %}
+                        <span class="text-amber-500">Belum Selesai</span>
+                    {% endif %}
+                </span>
+            </div>
+            <span class="block flex-1 overflow-y-auto">{{task.description}}</span>
+            <div>
+                <span class="block">Created At: {{task.date}}</span>
+                <div class="mt-1 flex justify-between">
+                    <a href="{% url 'todolist:set_finished' task.pk %}">
+                        <button class="xl:w-[146px] w-[126px] p-1 text-white bg-green-500 hover:bg-green-600 rounded-xl font-bold">Selesai</button>
+                    </a>
+                    <a href="{% url 'todolist:set_unfinished' task.pk %}">
+                        <button class="xl:w-[146px] w-[126px] p-1 text-white bg-amber-500 hover:bg-amber-600 rounded-xl font-bold">Belum Selesai</button>
+                    </a>
+                </div>
+                <a class="w-full h-full" href="{% url 'todolist:delete_task' task.pk %}">
+                    <button class="block w-full mt-1 p-1 text-white bg-red-400 hover:bg-red-500 rounded-xl font-bold">Hapus</button>
+                </a>
+            </div>
+        </div>
     {% endfor %}
-</table>
-<button><a href="{% url 'todolist:create_task' %}">Tambah Task Baru</a></button>
-<button><a href="{% url 'todolist:logout' %}">Logout</a></button>
+</div>
 {% endblock content %}

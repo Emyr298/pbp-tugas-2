@@ -67,6 +67,13 @@ Saya membuat dua akun bernama `Emyr298` dan `Ymir` lalu menambahkan tiga data _d
 
 ## Tugas 5
 
+### Perbedaan _Inline_, _Internal_, dan _External_ CSS dan Kelebihannya
+
+### Tag HTML5
+
+### Tipe-Tipe CSS _Selector_
+
+### Implementasi _Checklist_
 
 ### Referensi
 - https://tailwindcss.com/

@@ -88,6 +88,7 @@ Perbedaan dari _Inline_, _Internal_, dan _External_ CSS ada pada cara pengimplem
 - `<style>`: Meyimpan informasi _style_ (_internal_ CSS)
 
 ### Tipe-Tipe CSS _Selector_
+- `element`: Memilih elemen dengan _tag_ `element`
 - `.myclass`: Memilih elemen dengan _class_ `myclass`
 - `#myid`: Memilih elemen dengan _id_ `myid`
 - `*`: Memilih semua elemen
@@ -123,7 +124,8 @@ Pada `<div>` terluar dari _task cards_ saya membuat elemen tersebut di-scale men
 - https://tailwindcss.com/docs/installation/play-cdn
 - https://nerdcave.com/tailwind-cheat-sheet
 - https://css-tricks.com/snippets/css/a-guide-to-flexbox/
-- https://www.w3schools.com/html/html_css.asp
 - https://www.w3schools.com/tags/
+- https://www.w3schools.com/html/html_css.asp
+- https://www.w3schools.com/cssref/css_selectors.asp
 - https://www.w3schools.com/css/css_combinators.asp
 - https://pbp-fasilkom-ui.github.io/ganjil-2023/assignments/tutorial/tutorial-4#tips--trik-untuk-css

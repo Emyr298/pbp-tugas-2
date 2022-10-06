@@ -27,7 +27,7 @@
     {% for task in task_list %}
         <div class="xl:w-80 xl:h-96 w-72 h-80 p-3 bg-white rounded-xl flex flex-col justify-between drop-shadow-[0_3px_4px_rgba(0,0,0,0.25)] transition-transform hover:scale-105 duration-300">
             <div>
-                <span class="block text-center text-lg font-bold overflow-hidden">{{task.title}}</span>
+                <span class="block text-center text-lg font-bold overflow-hidden max-h-14 break-words">{{task.title}}</span>
                 <span class="block text-center">
                     {% if task.is_finished %}
                         <span class="text-green-500">Selesai</span>

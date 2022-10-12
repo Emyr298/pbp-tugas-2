@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% block meta %}
+<title>To-Do List</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    function refreshCardList(data) {
+        let cardList = $('#card-list');
+        cardList.empty();
+        
+        data.forEach(function(element) {
+            let isFinished = element.fields.is_finished;
+            let isFinishedClass = (isFinished) ? 'text-green-500' : 'text-amber-500';
+            let isFinishedText = (isFinished) ? 'Selesai' : 'Belum Selesai';
+            
+            cardList.append(
+                `<div class="xl:w-80 xl:h-96 w-72 h-80 p-3 bg-white rounded-xl flex flex-col justify-between drop-shadow-[0_3px_4px_rgba(0,0,0,0.25)] transition-transform hover:scale-105 duration-300">
+                    <div>
+                        <span class="block text-center text-lg font-bold overflow-hidden max-h-14 break-words">${element.fields.title}</span>
+                        <span class="block text-center">
+                            <span class="${isFinishedClass}">${isFinishedText}</span>
+                        </span>
+                    </div>
+                    <span class="block flex-1 break-words overflow-y-auto">${element.fields.description}</span>
+                    <div>
+                        <span class="block">Created At: ${new Date(element.fields.date).toLocaleString()}</span>
+                        <div class="mt-1 flex justify-between">
+                            <a href="/todolist/set_finished/${element.pk}/">
+                                <button class="xl:w-[146px] w-[126px] p-1 text-white bg-green-500 hover:bg-green-600 rounded-xl font-bold">Selesai</button>
+                            </a>
+                            <a href="/todolist/set_unfinished/${element.pk}/">
+                                <button class="xl:w-[146px] w-[126px] p-1 text-white bg-amber-500 hover:bg-amber-600 rounded-xl font-bold">Belum Selesai</button>
+                            </a>
+                        </div>
+                        <button onclick="deleteTask(${element.pk})" class="block w-full mt-1 p-1 text-white bg-red-400 hover:bg-red-500 rounded-xl font-bold">Hapus</button>
+                    </div>
+                </div>`
+            );
+        });
+    }
+    
+    function showAddTaskModal() {
+        let divHTML = document.getElementById('modal-add-task-div');
+        divHTML.classList.remove('hidden');
+        
+        let divJQ = $(divHTML);
+        divJQ.append(
+            `<div id="modal-add-task" class="w-full h-full flex flex-col justify-center">
+                <div class="lg:mt-16 mt-24 w-[300px] bg-transparent mx-auto drop-shadow-[0_3px_4px_rgba(0,0,0,0.25)]">
+                    <div class="w-full bg-green-500 p-2 rounded-t-lg">
+                        <h1 class="text-white text-lg font-bold">Tambah Task Baru</h1>
+                    </div>
+                    <div class="w-full bg-white px-4 pt-2 pb-4 rounded-b-lg text-lg">
+                        <form id="modal-add-task-form" method="POST" action="/todolist/add/">
+                            <div>
+                                <span>Title:</span>
+                                <input id="add-task-title" type="text" name="title" placeholder="Title" class="form-control block w-full mt-1 p-1 rounded-lg border-2">
+                            </div>
+                            <div class="mt-3">
+                                <span>Description:</span>
+                                <textarea id="add-task-description" name="description" placeholder="Description" class="form-control block w-full mt-1 p-1 rounded-lg border-2 resize-none"></textarea>
+                            </div>
+                            <input class="btn w-full mt-3 p-1 bg-green-500 hover:bg-green-600 text-white font-bold rounded-lg cursor-pointer" type="submit" value="Tambah">
+                        </form>
+                        <button onclick="closeAddTaskModal()" class="w-full mt-1 p-1 hover:bg-[rgba(0,0,0,0.2)] font-bold rounded-lg cursor-pointer">Kembali</button>
+                    </div>
+                </div>
+            </div>`
+        );
+        
+        let form = $('#modal-add-task-form');
+        form.submit(function(event) {
+            event.preventDefault();
+            
+            $.ajax({
+                type: 'POST',
+                url: form.attr('action'),
+                headers: {
+                    'X-CSRFToken': '{{ csrf_token }}',
+                },
+                data: {
+                    title: $('#add-task-title').val(),
+                    description: $('#add-task-description').val(),
+                },
+                success: function(data) {
+                    closeAddTaskModal();
+                    refreshCardList(data);
+                },
+                error: function(response) {
+                    let lastErrorMessage = $('#add-task-error');
+                    if (lastErrorMessage.length) lastErrorMessage.remove();
+                    
+                    form.after(`<ul id="add-task-error" class="mt-1">
+                            <li class="text-base text-red-500">${response.responseJSON.message}</li>
+                        </ul>`
+                    );
+                },
+            });
+        });
+    }
+    
+    function closeAddTaskModal() {
+        let divHTML = document.getElementById('modal-add-task-div');
+        divHTML.classList.add('hidden');
+        
+        let divJQ = $(divHTML);
+        divJQ.empty();
+    }
+    
+    function deleteTask(pk) {
+        $.ajax({
+            type: 'DELETE',
+            url: `/todolist/delete/${pk}/`,
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+            },
+            success: function(data) {
+                $.get("/todolist/json/", refreshCardList);
+            },
+        });
+    }
+    
+    $(document).ready(function() {
+        $.get("/todolist/json/", refreshCardList);
+        
+        let addTaskButton = $('#add-task-button');
+        addTaskButton.click(showAddTaskModal);
+        
+        // let form = $('#form');
+        // form.submit(function(e) {
+        //     e.preventDefault();
+        //     $.ajax({
+        //         type: 'POST',
+        //         url: form.attr('action'),
+        //         data: form.serialize(),
+        //         success: function(data) {
+        //             let tableBody = $('#table-body');
+        //             tableBody.empty();
+                    
+        //             data.forEach(function(element) {
+        //                 tableBody.append(`<tr><th>${element.fields.nama_barang}</th><th>${element.fields.harga_barang}</th><th>${element.fields.deskripsi}</th></tr>`);
+        //             });
+        //         },
+        //     });
+        // });
+    });
+</script>
+{% endblock meta %}
+
+{% block content %}
+<!-- Navigation Bar -->
+<nav class="w-full p-2 bg-green-500 flex flex-col lg:flex-row lg:justify-between items-center fixed top-0 drop-shadow z-40">
+    <div class="flex flex-col justify-center">
+        <span class="text-xl font-bold text-white"><a href="{% url 'todolist:todolist' %}">To-Do List</a></span>
+    </div>
+    <div class="inline-block">
+        <span class="text-white">Welcome, {{username}}</span>
+        <button class="ml-2 p-2 hover:bg-[rgba(0,0,0,0.2)] rounded-lg"><a class="text-white font-bold" href="{% url 'todolist:logout' %}">Logout</a></button>
+    </div>
+</nav>
+
+<!-- Top Items -->
+<h3 class="lg:mt-16 mt-24 text-3xl text-center font-bold">Tasks</h3>
+<div class="mt-2 flex lg:justify-end justify-center">
+    <button id="add-task-button" class="lg:mr-2 p-2 font-bold text-white bg-green-500 hover:bg-green-600 rounded-lg">Tambah Task Baru</button>
+</div>
+
+<!-- Cards -->
+<div id="card-list" class="p-5 flex flex-wrap gap-5 justify-center"></div>
+
+<div id="modal-add-task-div" class="hidden bg-[rgba(0,0,0,0.5)] fixed top-0 w-screen h-screen z-50"></div>
+{% endblock content %}

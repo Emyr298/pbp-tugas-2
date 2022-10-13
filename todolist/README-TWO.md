@@ -13,10 +13,10 @@ Dengan menggunakan AJAX, kita bisa mengirimkan _request_ pada suatu URL dan mend
 
 ## Cara Implementasi
 ### Tahap 1: AJAX GET
-
+Pertama, saya membuat fungsi `todolist_json` yang memberikan _task list_ dalam bentuk JSON dan mendaftarkannya pada _path_ `/todolist/json`. Setelah itu, saya membuat `todolist_ajax.html` yang didasarkan pada `todolist.html`. Tetapi, saya mengosongkan `<div>` yang tadinya berisi for-loop untuk membuat _cards_ untuk tiap _task_-nya. Setelah itu saya menambahkan AJAX GET pada kode JavaScript dengan fungsi `refreshCardList`. Fungsi `refreshCardList(data)` berfungsi untuk membuat _task cards_ pada `<div>` yang kosong tadi berdasarkan data yang dijadikan argumen. Terakhir, saya mengganti fungsi `todolist` pada `views.py` sehingga _task list_ tidak didapatkan ketika fungsi tersebut dipanggil dan mengubah `todolist.html` ke `todolist_ajax.html`.
 
 ### Tahap 2: AJAX POST
-
+Pertama, saya membuat fungsi `showAddTaskModal` dan `closeAddTaskModal` yang secara berturut-turut berfungsi menampilkan dan menutup modal untuk menambahkan _task_. Struktur dari modal saya dapatkan dengan meng-_copy_ _form box_ pada halaman `todolist/create-task/` dan melakukan modifikasi seperti menambahkan efek _dim background_ ketika modal terbuka serta mengubah cara kerja _error message_ agar kompatibel dengan AJAX POST. Setelah itu, saya menambahkan AJAX POST yang mengarah ke `todolist/add/` dengan header yang mengandung `csrf_token` pada `X-CSRFToken` dan body JSON yang mengandung _value_ dari `<input>` (_title_) dan `<textarea>` (_description_). Ketika _request_ dikirim, _request_ akan di-_handle_ oleh fungsi `create_task_post` yang saya buat pada `views.py` yang akan mengirimkan _task list_ atau _error message_ dalam bentuk JSON. _task list_ yang diterima oleh _client_ akan dimanfaatkan sebagai argumen dari `refreshCardList` untuk menampilkan _card list_ yang ter-_update_. `closeAddTaskModal` juga akan dipanggil untuk menutup modal.
 
 ## Referensi
 - https://api.jquery.com/

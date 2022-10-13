@@ -125,24 +125,6 @@
         
         let addTaskButton = $('#add-task-button');
         addTaskButton.click(showAddTaskModal);
-        
-        // let form = $('#form');
-        // form.submit(function(e) {
-        //     e.preventDefault();
-        //     $.ajax({
-        //         type: 'POST',
-        //         url: form.attr('action'),
-        //         data: form.serialize(),
-        //         success: function(data) {
-        //             let tableBody = $('#table-body');
-        //             tableBody.empty();
-                    
-        //             data.forEach(function(element) {
-        //                 tableBody.append(`<tr><th>${element.fields.nama_barang}</th><th>${element.fields.harga_barang}</th><th>${element.fields.deskripsi}</th></tr>`);
-        //             });
-        //         },
-        //     });
-        // });
     });
 </script>
 {% endblock meta %}
